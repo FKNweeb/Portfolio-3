@@ -17,18 +17,28 @@ function App() {
 
   //Define the initial states of the program
   const [data, setData] = useState([]);
-  const [page,setPage] = useState(0);
   const [randomTitles, setRandomTitles]=useState([]);
   const [isPaused, setPaused] = useState(false);
   
-  //Fetch titles from api 
-  useEffect(()=>{
-    fetch(localUrl, options)
-    .then(res => res.json())
-    .then(data => setData(data.items || []))
-    .catch(err => console.log(err));
-  }, []);
 
+
+  //Fetch titles from api 
+  const randomPage = () => Math.floor(Math.random() * 100);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      const nextPage = randomPage();
+      console.log(nextPage)
+      fetch(`http://localhost:5001/api/titles?page=${nextPage}&pageSize=25`, options)
+          .then(res => res.json())
+          .then(data => {
+              setData(prevData => [...prevData, ...data.items]);
+          })
+          .catch(err => console.log(err));
+    }, 10000);
+    
+    return () => clearInterval(intervalId);
+},[]);
 
   //Update Random titles
   useEffect(() => {
@@ -46,6 +56,8 @@ function App() {
  
   const handleMouseEnter = () => setPaused(true);
   const handleMouseLeave = () => setPaused(false);
+
+  
 
   return (
     <HighlightedTitle data={randomTitles} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}/>
