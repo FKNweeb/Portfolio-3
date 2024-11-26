@@ -38,7 +38,7 @@ function App() {
     }, 10000);
     
     return () => clearInterval(intervalId);
-},[]);
+});
 
   //Update Random titles
   useEffect(() => {
@@ -49,7 +49,7 @@ function App() {
         const newRandomTitles = GetRandomTitles(data, 5);
         setRandomTitles(newRandomTitles);
       }
-    }, 5000);
+    }, 3000);
 
     return () => clearInterval(intervalId);
   }, [data, isPaused]);
