@@ -1,8 +1,11 @@
 import './App.css';
+import Footer from "./Components/Footer";
 
 function App() {
   return (
-    <p>Hello World</p>
+    <div>
+      <Footer />
+    </div>
   );
 }
 
