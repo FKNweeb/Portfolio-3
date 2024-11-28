@@ -4,6 +4,7 @@ import Navbar from './Components/Navbar';
 import NoPage from './Pages/NoPage';
 import Home from './Pages/Home';
 import './App.css';
+import Footer from "./Components/Footer";
 import Login from './Pages/Login';
 import CreateUser from './Pages/CreateUser';
 import Profile from './Components/Profile';
@@ -25,10 +26,10 @@ function App() {
   const [data, setData] = useState([]);
   const [randomTitles, setRandomTitles]=useState([]);
   const [isPaused, setPaused] = useState(false);
-  
 
 
-  //Fetch titles from api 
+
+  //Fetch titles from api
   const randomPage = () => Math.floor(Math.random() * 100);
 
   useEffect(() => {
@@ -42,7 +43,7 @@ function App() {
           })
           .catch(err => console.log(err));
     }, 10000);
-    
+
     return () => clearInterval(intervalId);
 });
 
@@ -59,11 +60,11 @@ function App() {
 
     return () => clearInterval(intervalId);
   }, [data, isPaused]);
- 
+
   const handleMouseEnter = () => setPaused(true);
   const handleMouseLeave = () => setPaused(false);
 
-  
+
 
   return (
     <BrowserRouter>
@@ -76,6 +77,7 @@ function App() {
         <Route path="/profile" exact Component={Profile} />
         <Route path="/Name/:slug" exact Component={NameDetails} />
       </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
@@ -83,13 +85,13 @@ function App() {
 
 function GetRandomTitles(arr, count){
   const shuffled = [...arr];
-  
+
   // Shuffle the array
   for (let i = shuffled.length - 1; i > 0; i--) {
       const randomIndex = Math.floor(Math.random() * (i + 1));
       [shuffled[i], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[i]];
   }
-  
+
   // Return the first `count` elements
   return shuffled.slice(0, count);
 }
