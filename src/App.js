@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import HighlightedTitle from './Components/HighlightedTitle ';
-import { auth } from './auth';
+
 
 function App() {
   // const url = 'https://api.themoviedb.org/3/discover/movie';
@@ -10,7 +10,7 @@ function App() {
     method:'GET',
     headers:{
       accept:'application/json',
-      Authorization: auth
+
     }
   };
 
