@@ -28,7 +28,7 @@ function Search() {
     fetch(titleUrl + searchTerm, options)
       .then((res) => res.json())
       .then((data) => setTitles(data.items))
-      .console((err) => console.log(err));
+      .catch((err) => console.log(err));
   }, []);
 
   return (
