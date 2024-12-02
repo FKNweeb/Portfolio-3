@@ -1,0 +1,41 @@
+.search-list {
+  position: absolute; /* Position relative to .search-form */
+  z-index: 1000;
+  top: 5%; /* Place it just below the search-form */
+  left: 50%; /* Center it horizontally */
+  transform: translateX(-50%); /* Adjust horizontal offset to truly center */
+  width: 100%; /* Match the width of the search-form */
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 5px; /* Optional: Add some space below the search-form */
+  max-height: 200px; /* Limit height to prevent overflow */
+  overflow-y: auto; /* Enable scrolling if content exceeds max-height */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow for better visibility */
+}
+
+.search-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.dropdown-menu {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-top: 5px;
+  max-height: 200px;
+  overflow-y: auto;
+  width: 100%;
+  z-index: 1000;
+}
+
+.dropdown-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}

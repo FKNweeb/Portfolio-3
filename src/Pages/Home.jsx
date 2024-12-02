@@ -1,18 +1,10 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { unstable_renderSubtreeIntoContainer } from 'react-dom';
 import HighlightedTitle from '../Components/HighlightedTitle';
+import Search from '../Components/Search';
+import GetRandomTitles from '../Helpers/GetRanomTitles';
 
 function Home() {
-  // const url = 'https://api.themoviedb.org/3/discover/movie';
-  const localUrl = 'http://localhost:5001/api/titles?page=0&pageSize=25';
-  const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-    },
-  };
-
   //Define the initial states of the program
   const [data, setData] = useState([]);
   const [randomTitles, setRandomTitles] = useState([]);
@@ -24,8 +16,8 @@ function Home() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       const nextPage = randomPage();
-      console.log(nextPage);
-      fetch(`http://localhost:5001/api/titles?page=${nextPage}&pageSize=25`, options)
+
+      fetch(`http://localhost:5001/api/titles?page=${nextPage}&pageSize=25`)
         .then((res) => res.json())
         .then((data) => {
           setData((prevData) => [...prevData, ...data.items]);
@@ -53,20 +45,11 @@ function Home() {
   const handleMouseEnter = () => setPaused(true);
   const handleMouseLeave = () => setPaused(false);
 
-  function GetRandomTitles(arr, count) {
-    const shuffled = [...arr];
-
-    // Shuffle the array
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const randomIndex = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[randomIndex]] = [shuffled[randomIndex], shuffled[i]];
-    }
-
-    // Return the first `count` elements
-    return shuffled.slice(0, count);
-  }
-
-  return <HighlightedTitle data={randomTitles} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />;
+  return (
+    <div className="App">
+      <HighlightedTitle data={randomTitles} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />
+    </div>
+  );
 }
 
 export default Home;
