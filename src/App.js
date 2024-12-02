@@ -8,20 +8,25 @@ import Footer from './Components/Footer';
 import Login from './Pages/Login';
 import CreateUser from './Pages/CreateUser';
 import Profile from './Pages/Profile';
+import { SearchProvider } from './Helpers/SearchContext';
+import TitleDetails from './Pages/TitleDetails';
 
 function App() {
   return (
     <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path="/" exact Component={Home} />
-        <Route path="*" exact Component={NoPage} />
-        <Route path="/createuser" exact Component={CreateUser} />
-        <Route path="/login" exact Component={Login} />
-        <Route path="/profile" exact Component={Profile} />
-        <Route path="/Name/:slug" exact Component={NameDetails} />
-      </Routes>
-      <Footer />
+      <SearchProvider>
+        <Navbar />
+        <Routes>
+          <Route path="/" exact Component={Home} />
+          <Route path="*" exact Component={NoPage} />
+          <Route path="/createuser" exact Component={CreateUser} />
+          <Route path="/login" exact Component={Login} />
+          <Route path="/profile" exact Component={Profile} />
+          <Route path="/Name/:slug" exact Component={NameDetails} />
+          <Route path="/Title/:slug" exact Component={TitleDetails} />
+        </Routes>
+        <Footer />
+      </SearchProvider>
     </BrowserRouter>
   );
 }
