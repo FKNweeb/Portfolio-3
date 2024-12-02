@@ -1,0 +1,10 @@
+.space{
+   margin-bottom: 100px;
+}
+
+.buttons-space{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
