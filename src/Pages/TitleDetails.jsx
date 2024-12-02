@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Search from '../Components/Search';
-import './TitleDetails.css'
+
 function TitleDetails() {
   const { slug } = useParams();
 
@@ -18,7 +18,7 @@ function TitleDetails() {
 
   return (
     <div className='container-fluid'>
-      <Search />
+      
       {/* <div className='container'>
         {title.map((t) => (
           <div className='row row-cols-2'>
@@ -32,7 +32,7 @@ function TitleDetails() {
       <div className='container text-center'>
            <div className='row row-cols-2'>
            <div  id ="title-poster"className='col1'>
-             <img src='https://m.media-amazon.com/images/M/MV5BMTkzNDc3NjYzNF5BMl5BanBnXkFtZTgwOTg3NzA0MTE@._V1_SX300.jpg' alt='Photo Goes Here'/>
+             <img src={t.poster} alt='Photo Goes Here'/>
            </div>
            <div id="title-information" className='col2' >
              <div className='col'>
