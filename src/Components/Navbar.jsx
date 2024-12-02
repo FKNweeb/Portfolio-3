@@ -38,22 +38,25 @@ const Navbar = () => {
 
   return (
     <div>
-      <nav className="navbar ">
+      <nav className="navbar p-2">
         <Link to="/" className="homebutton">
           HOME
         </Link>
-        <form className="search-form w-50 h-25">
-          <input
-            type="text"
-            placeholder="Search..."
-            value={searchText}
-            onChange={handleSearchChange}
-            className="search-input w-75 h-25"
-          />
-          <button type="submit" className="search-button">
-            🔍
-          </button>
-        </form>
+        <div className='search-container'>
+          <form className="search-form h-25">
+            <input
+              type="text"
+              placeholder="Search..."
+              value={searchText}
+              onChange={handleSearchChange}
+              className="search-input h-25"
+            />
+            <button type="submit" className="search-button">
+              🔍
+            </button>
+          </form>
+          <Search />
+        </div>
         <div className="auth-buttons">
           <Link to="/createuser" className="create-user">
             Create User
@@ -73,7 +76,6 @@ const Navbar = () => {
           )}
         </div>
       </nav>
-      <Search />
     </div>
   );
 };
