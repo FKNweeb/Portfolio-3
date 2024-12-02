@@ -39,9 +39,9 @@ function Search() {
   }, [searchText]);
 
   return (
-    <div className="search-list w-50">
+    <div className="search-list">
       <div>
-        <ListGroup className="text-center container-fluid">
+        <ListGroup className="text-center container-fluid p-0">
           {searchText &&
             titles.slice(0, 3).map((t) => (
               <ListGroup.Item key={t.tconst} onClick={() => handleTitleClick(t.primaryTitle)}>
@@ -49,7 +49,7 @@ function Search() {
               </ListGroup.Item>
             ))}
         </ListGroup>
-        <ListGroup className="text-center container-fluid">
+        <ListGroup className="text-center container-fluid p-0">
           {searchText &&
             names.slice(0, 3).map((n) => (
               <ListGroup.Item key={n.nconst} onClick={() => handleNameClick(n.name)}>
