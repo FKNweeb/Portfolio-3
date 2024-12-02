@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import React from 'react';
 import './NoPage.css';
 
@@ -10,9 +11,9 @@ const NoPage = () => {
         <p className="error-description">
           The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
         </p>
-        <a href="/" className="home-button">
+        <Link to="/" className="home-button">
           Go Back to Home
-        </a>
+        </Link>
       </div>
     </div>
   );

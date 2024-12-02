@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { unstable_renderSubtreeIntoContainer } from 'react-dom';
 import HighlightedTitle from '../Components/HighlightedTitle';
+import './Home.css';
 
 function Home() {
   // const url = 'https://api.themoviedb.org/3/discover/movie';
@@ -66,7 +67,17 @@ function Home() {
     return shuffled.slice(0, count);
   }
 
-  return <HighlightedTitle data={randomTitles} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave} />;
+  return (
+    <div>
+      <h1 className="abouttitle">About</h1>
+      <p className="abouttext">This page can be used to search names and titles related to movies</p>
+      <HighlightedTitle
+        data={randomTitles}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      />;
+    </div>
+  );
 }
 
 export default Home;

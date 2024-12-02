@@ -8,6 +8,7 @@ function CreateUser() {
     UserEmail: '',
     UserPassword: '',
   });
+
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
@@ -31,8 +32,6 @@ function CreateUser() {
         body: JSON.stringify(formData),
       });
 
-      console.log(response);
-
       if (response.ok) {
         navigate('/');
       }
@@ -47,6 +46,7 @@ function CreateUser() {
     <div className="create-user-container">
       <div className="create-user-form">
         <h1>Create User</h1>
+        {error && <p className="error">{error}</p>}
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="username">Username:</label>
@@ -85,7 +85,7 @@ function CreateUser() {
             />
           </div>
           <button type="submit" className="submit-button">
-            Create User
+            {isLoading ? 'Creating...' : 'Create User'}
           </button>
         </form>
       </div>

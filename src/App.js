@@ -1,5 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, BrowserRouter } from 'react-router-dom';
-import NameDetails from './Components/NameDetails';
+import NameDetails from './Pages/NameDetails';
 import Navbar from './Components/Navbar';
 import NoPage from './Pages/NoPage';
 import Home from './Pages/Home';
@@ -7,7 +7,7 @@ import './App.css';
 import Footer from './Components/Footer';
 import Login from './Pages/Login';
 import CreateUser from './Pages/CreateUser';
-import Profile from './Components/Profile';
+import Profile from './Pages/Profile';
 
 function App() {
   return (
