@@ -51,9 +51,9 @@ const Navbar = () => {
               onChange={handleSearchChange}
               className="search-input h-25"
             />
-            <button type="submit" className="search-button">
+            {/* <button type="submit" className="search-button">
               🔍
-            </button>
+            </button> */}
           </form>
           <Search />
         </div>
