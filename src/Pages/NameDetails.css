@@ -1,0 +1,61 @@
+/* Header Styling */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+/* Button Group */
+.button-group {
+  display: flex;
+  justify-content: center; /* Center the buttons underneath the image */
+  gap: 1rem; /* Space between the buttons */
+  margin-top: 1rem; /* Adds space between the image and buttons */
+}
+
+/* Button Styling */
+.button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: white;
+  background-color: #007bff; /* Blue background */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}
+
+  
+  /* Add padding to the right of the "Biography" */
+  .biography {
+    padding-right: 20rem;
+  }
+  
+  /* Content Styling */
+  .content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items at the top */
+    gap: 2rem; /* Adds space between image and details */
+  }
+  
+  /* Profile Image Styling */
+  .profile-image {
+    max-width: 200px;
+    border-radius: 8px; /* Optional: adds rounded corners */
+  }
+  
+  /* Details Section */
+  .details {
+    padding-right: 20rem;
+  }
+  
+  .details ul {
+    list-style-type: disc;
+    margin-left: 1rem;
+  }
+  
