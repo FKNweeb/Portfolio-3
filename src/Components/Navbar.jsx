@@ -21,6 +21,8 @@ const Navbar = () => {
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     console.log('Search:', searchText);
+    navigate("/SearchResult")
+    setSearchText("");
     // Implement search functionality here
   };
 
@@ -50,10 +52,12 @@ const Navbar = () => {
               value={searchText}
               onChange={handleSearchChange}
               className="search-input h-25"
+              
+              
             />
-            {/* <button type="submit" className="search-button">
+            <button type="submit" className="search-button" onClick={handleSearchSubmit}>
               🔍
-            </button> */}
+            </button>
           </form>
           <Search />
         </div>

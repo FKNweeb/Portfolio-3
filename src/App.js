@@ -10,6 +10,7 @@ import CreateUser from './Pages/CreateUser';
 import Profile from './Pages/Profile';
 import { SearchProvider } from './Helpers/SearchContext';
 import TitleDetails from './Pages/TitleDetails';
+import SearchResult from './Pages/SearchResult';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/profile" exact Component={Profile} />
           <Route path="/Name/:slug" exact Component={NameDetails} />
           <Route path="/Title/:slug" exact Component={TitleDetails} />
+          <Route path="/SearchResult" exact Component={SearchResult} />
         </Routes>
         <Footer />
       </SearchProvider>
