@@ -10,6 +10,21 @@ function SearchResult() {
     console.log(titles);
     console.log(names);
 
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const handleNext = () =>{
+        setCurrentPage(currentPage => currentPage + 1)
+    }
+
+    const handlePrev = () => {
+        setCurrentPage( currentPage => currentPage -1)
+    }
+
+    const indexLastItem = currentPage * 3;
+    const indexOfFirstItem = indexLastItem - 3;
+    const currItems = names.slice(indexOfFirstItem, indexLastItem);
+
+    const totalPages = Math.ceil(names.length / 3);
     return (
         <div className="container">
             <div className="row row-cols-2 gx-5">
@@ -18,7 +33,8 @@ function SearchResult() {
 
                     <h5 className="">People</h5>
                     <div id="Person" className="row justify-content-start mb-4">
-                        {names.slice(0,3).map( n => (
+                        {console.log(currentPage)}
+                        {currItems.map( n => (
                         <div key={n.nconst} className="mb-1 col-12">
                             <div className="card w-100">
                                 <div className="card-body shadow-lg d-flex flex-column">
@@ -45,8 +61,8 @@ function SearchResult() {
                     </div>
                         <div id="buttons" className="row d-flex">
                             <div className="col-12 d-flex flex-column flex-md-row justify-content-center  mb-3 p-2">
-                                <button className="btn btn-outline-primary w-25 mx-2 w-md-25 text-truncate">Previous</button>
-                                <button className="btn btn-outline-primary w-25 mx-2 w-md-25 text-truncate">Next</button>
+                                <button className="btn btn-outline-primary w-25 mx-2 w-md-25 text-truncate" onClick={handlePrev} disabled={currentPage === 1}>Previous</button>
+                                <button className="btn btn-outline-primary w-25 mx-2 w-md-25 text-truncate" onClick={handleNext} disabled={currentPage === totalPages}>Next</button>
                             </div>
                         </div>
 
