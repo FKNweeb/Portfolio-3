@@ -2,8 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSearch, setSearchText } from '../Helpers/SearchContext';
 import { ListGroup } from 'react-bootstrap';
+import useTitlesStore from '../Stores/TitlesStore';
+import useNamesStore from '../Stores/NamesStore';
 
 function Search() {
+  const {titlesFetched} = useTitlesStore();
+  const {namesFetched} = useNamesStore();
+
   const { searchText, setSearchText } = useSearch();
 
   const [titles, setTitles] = useState([]);
@@ -29,6 +34,8 @@ function Search() {
       .then((res) => res.json())
       .then((data) => setTitles(data.items))
       .catch((err) => console.log(err));
+
+      titlesFetched(titles);
   }, [searchText]);
 
   useEffect(() => {
@@ -36,6 +43,8 @@ function Search() {
       .then((res) => res.json())
       .then((data) => setNames(data.items))
       .catch((err) => console.log(err));
+
+      namesFetched(names);
   }, [searchText]);
 
   return (
