@@ -20,7 +20,6 @@ const Navbar = () => {
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
-    console.log('Search:', searchText);
     navigate("/SearchResult")
     setSearchText("");
     // Implement search functionality here
