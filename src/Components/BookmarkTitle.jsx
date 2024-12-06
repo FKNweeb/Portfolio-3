@@ -43,7 +43,7 @@ function BookmarkTitle({ tconst }) {
 
     const CheckIfBookmarkTitleContainsSlug = (tconst) => {
       for (let index = 0; index < user?.bookMarkTitles?.length; index++) {
-        if (user.bookMarkTitles[index].tconst === tconst) { return true; }        
+        if (user.bookMarkTitles[index].titleId === tconst) { return true; }        
       }
       return false;
     }

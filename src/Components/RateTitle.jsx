@@ -43,7 +43,7 @@ function RateTitle({ tconst }) {
 
     const CheckIfRatesTitleContainsSlug = (tconst) => {
       for (let index = 0; index < user?.rateTitles?.length; index++) {
-        if (user.rateTitles[index].nameId === tconst) { return true; }        
+        if (user.rateTitles[index].titleId === tconst) { return true; }        
       }
       return false;
     }
