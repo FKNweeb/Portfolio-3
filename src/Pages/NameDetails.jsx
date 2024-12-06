@@ -2,6 +2,10 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import React from 'react';
 import './NameDetails.css';
+import KnownWorks from '../Components/KnownWorks';
+import CoPlayers from '../Components/CoPlayers.jsx';
+import RateName from '../Components/RateName.jsx';
+import BookmarkName from '../Components/BookmarkName.jsx';
 
 function NameDetails() {
   const { slug } = useParams();
@@ -75,38 +79,57 @@ function NameDetails() {
   }
 
   return (
-    <div>
-      <div className="header">
-        <h1>{name.name}</h1>
-        <h1 className="biography">Biography</h1>
+    <div className='container-fluid'>
+      <div className='container text-center bg-light p-4 rounded shadow-sm'>
+           <div className='row row-cols-2'>
+           <div  id ="title-poster" className='col1'>
+              {image ? (<img src={image} alt={`${name.name}`} className="img-fluid  mb-2" />
+                   ) :  (<div className='image-placeholder'>No image available</div>)}
+           </div>
+           <div id="title-information" className='col2' >
+             <div className='col'>
+               <div id="title" className='row1'>
+                   <h2 className='mb-3'>{name.name}</h2>
+               </div>
+               <div id='date-rating' className='row2 row-cols-3 d-flex flex-wrap mb-3 bg-light p-4 rounded-1 shadow-lg mb-3'>
+                <h5 className='col1' style={name.birthYear ? null : {visibility: 'hidden' }}>Birth year: {name.birthYear}</h5>
+                {<h5 className='col2' style={name.deathYear ? null : {visibility: 'hidden' }}>Death year: {name.deathYear}</h5>}
+                <div>
+                  <h5 className=' col3' style={name?.localNameRatings?.averageRating ? null : {visibility: 'hidden' }}>
+                    Rating: {name?.localNameRatings?.averageRating}
+                  </h5>
+                  <p style={name?.localNameRatings?.totalVotes ? null : { visibility: 'hidden' }}>
+                    Number of votes: {name?.localNameRatings?.totalVotes}
+                  </p>
+                </div>
+               </div>
+               <div className='row3 bg-light p-4 rounded-1 shadow-lg mb-3'>
+                 {name.professions.map((prof) => 
+                  <p className='text-secondary fs-5 mb-0'>{prof}</p>)}
+               </div>
+             </div>
+           </div>
+         </div>
+
+
+         <div id="buttons" className='row row-cols-2 mt-3 mb-3'>
+           <div className=''>
+             <div className='row-col-2 '>
+             <BookmarkName slug={slug} />
+             <RateName slug={slug} />
+             </div>
+           </div>
+         </div>
       </div>
-
-      <div className="content">
-        <div className='image-section'>
-          {image ? (<img src={image} alt={`${name.name}`} className="profile-image" />
-              ) :  (<div className='image-placeholder'>No image available</div>)}
-          <div className="button-group">
-            <button className="button">Bookmark</button>
-            <button className="button">Rate</button>
-          </div>
-        </div>
-
-        <div className="details">
-          {name.birthYear && <p>Birth year: {name.birthYear}</p>}
-          {name.deathYear && <p>Death year: {name.deathYear}</p>}
-          {name.knownForTitles && (
-            <>
-              <p>Known for titles:</p>
-              <ul>
-                {name.knownForTitles.map((title, index) => (
-                  <li key={index}>{title}</li> 
-                ))}
-              </ul>
-            </>
-          )}
-        </div>
+      
+      <div id="knownWorks" className='row'>
+        <KnownWorks knownForTitles={name.knownForTitles}/>
+      </div>
+      <div id="coPlayers" className='row'>
+        <CoPlayers />
       </div>
     </div>
+    
   );
 }
 
