@@ -1,0 +1,21 @@
+.text-long  {
+    overflow: hidden;
+    /* white-space: nowrap; */
+    -webkit-line-clamp: 2;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+    
+}
+
+.text-long:hover {
+    
+    cursor: context-menu;
+    -webkit-line-clamp: none;
+    
+}
+
+.card:hover {
+    transform: scale(1.05);
+   
+}
