@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import useTitlesStore from "../Stores/TitlesStore";
 import './SearchResult.css'
 import useNamesStore from "../Stores/NamesStore";
+import BestMatch from "../Components/BestMatch";
+import ExactMatch from "../Components/ExactMatch";
+import StructuredtMatch from "../Components/StructuredMatch";
 function SearchResult() {
     
     const {titles} = useTitlesStore();
@@ -123,12 +126,10 @@ function SearchResult() {
                 </div>
 
                 <div className="col2">
-                    <h2>Advanced Search</h2>
-                    <h5 className="mb-3">Structured String Search</h5>
-                    <input type="text" placeholder="Smth"></input>
-                    <h5 className="mb-3">Structured String Search</h5>
-                    <input type="text" placeholder="Smth"></input>
-                    <h5 className="mb-3">Structured String Search</h5>
+                    <h2 className="mb-3">Advanced Search</h2>
+                    <BestMatch/>
+                    <ExactMatch/>
+                    <StructuredtMatch/>
                     <input type="text" placeholder="Smth"></input>
                     <h5 className="mb-3">Structured String Search</h5>
                     <input type="text" placeholder="Smth"></input>
