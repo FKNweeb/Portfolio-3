@@ -51,8 +51,6 @@ const Navbar = () => {
               value={searchText}
               onChange={handleSearchChange}
               className="search-input h-25"
-              
-              
             />
             <button type="submit" className="search-button" onClick={handleSearchSubmit}>
               🔍

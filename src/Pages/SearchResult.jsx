@@ -6,6 +6,7 @@ import BestMatch from "../Components/BestMatch";
 import ExactMatch from "../Components/ExactMatch";
 import StructuredtMatch from "../Components/StructuredMatch";
 import StructuredNametMatch from "../Components/StructuredNameMatch";
+import { Link } from "react-router-dom";
 function SearchResult() {
     
     const {titles} = useTitlesStore();
@@ -52,11 +53,11 @@ function SearchResult() {
                     <h5 className="">People</h5>
                     <div id="Person" className="row justify-content-start mb-4">
                         {currNames.map( n => (
-                        <div key={n.nconst} className="mb-1 col-12">
+                        <div key={n.nameId} className="mb-1 col-12">
                             <div className="card w-100">
                                 <div className="card-body shadow-lg d-flex flex-column">
                                     <div className="d-flex flex-column flex-md-row justify-content-between">
-                                        <h5 className="card-title">{n.name}</h5>
+                                        <Link to={`/Name/${n.nameId}`} className="card-title">{n.name}</Link>
                                         <p className="fst-italic">{n.birthYear && <p>Birth year:{n.birthYear}</p> }</p>
                                     </div>
                                     <div className="d-flex flex-column justify-content-between mb-3">
@@ -90,7 +91,8 @@ function SearchResult() {
                             <div className="card w-100">
                                 <div className="card-body shadow-lg d-flex flex-column">
                                     <div className="d-flex flex-column flex-md-row justify-content-between">
-                                        <h5 className="card-title mb-0">{t.primaryTitle}</h5>
+                                        <Link to={`/Title/${t.primaryTitle}`} className="card-title mb-0">{t.primaryTitle}</Link>
+                                        {/* <h5 className="card-title mb-0">{t.primaryTitle}</h5> */}
                                         <p className="fst-italic">{t.startDate && <p>Aired: {t.startDate}</p>}</p>
                                     </div>
                                     <div className="mb-1">
