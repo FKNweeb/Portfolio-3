@@ -19,7 +19,7 @@ function TitleDetails() {
   }, [slug]);
 
   
-  if (!title.length) return <p>No page Found</p>;
+  if (!title.length) return <h1>Loading</h1>;
 
   
   return (

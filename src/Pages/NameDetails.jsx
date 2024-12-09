@@ -73,10 +73,11 @@ function NameDetails() {
 
     fetchPersonImage();
   }, [person.id]);
-
+  
   if (!name.name) {
-    return <h1>Not Found</h1>;
+    return <h1>Loading</h1>;
   }
+
 
   return (
     <div className='container-fluid'>
