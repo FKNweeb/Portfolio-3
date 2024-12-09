@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom';
 
 import SimilarTitles from '../Components/SimilarTitles';
 import ActorsInvolved from '../Components/ActorsInvolved';
+import BookmarkTitle from '../Components/BookmarkTitle';
+import RateTitle from '../Components/RateTitle';
 
 function TitleDetails() {
   const { slug } = useParams();
@@ -22,21 +24,11 @@ function TitleDetails() {
   
   return (
     <div className='container-fluid'>
-      
-      {/* <div className='container'>
-        {title.map((t) => (
-          <div className='row row-cols-2'>
-            <img src='' alt='Photo Goes here'></img>
-            <p>{t.primaryTitle}</p>
-            <p>{t.plot}</p>
-          </div>
-        ))}
-      </div> */}
         {title.map(t => (
       <div className='container text-center bg-light p-4 rounded shadow-sm'>
            <div className='row row-cols-2'>
            <div  id ="title-poster" className='col1'>
-             <img src={t.poster} alt='Photo Goes Here' className='img-fluid  mb-2'/>
+             <img src={t.poster} alt='Photo Goes Here' className='img-fluid mb-2'/>
            </div>
            <div id="title-information" className='col2' >
              <div className='col'>
@@ -66,8 +58,8 @@ function TitleDetails() {
          <div id="buttons" className='row row-cols-2 mt-3 mb-3'>
            <div className=''>
              <div className='row-col-2 '>
-             <button className='btn btn-primary me-2'>Bookmark</button>
-             <button className='btn btn-primary '>Rate</button>
+             <BookmarkTitle tconst={t.tconst} />
+             <RateTitle tconst={t.tconst} />
              </div>
            </div>
          </div>

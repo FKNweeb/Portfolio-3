@@ -14,7 +14,6 @@ function Profile() {
 
 
   useEffect(() => {
-    // Fetch user data
     const fetchUser = async () => {
       try {
         const response = await fetch('http://localhost:5001/api/users/getUser', {
@@ -68,7 +67,6 @@ function Profile() {
 
     const posterList = []
     for (let index = 0; index < user.bookMarkTitles.length; index++) {
-      console.log(user.bookMarkTitles);
       const response = await fetch(`http://localhost:5001/api/titles/search?keywords=${user.bookMarkTitles[index].title.primaryTitle}`, {
         method: "GET",
         headers: { 'Content-Type': 'application/json' }
@@ -77,7 +75,7 @@ function Profile() {
       if (!response.ok) { console.warn(`Failed to fetch movie at index ${index}`); continue; }  
       const data = await response.json();
 
-      posterList.push({poster: data.poster, title: data.primaryTitle})
+      posterList.push({poster: data.items[0].poster, title: data.items[0].primaryTitle})
     }
     setPosters(posterList)
     } 
@@ -100,6 +98,7 @@ function Profile() {
 
           if (!person || !person.name) {
             console.warn(`Skipping invalid person at index ${index}`);
+            newImages.push(({ src: null, name: user.bookMarkNames[index].name.primaryName }))
             continue;
           }
 
@@ -172,8 +171,10 @@ function Profile() {
             flexDirection: "column",
             minHeight: "200px"
           }}>
-            <img src={img.src} alt={`Profile ${index + 1}`} style={{ width: "100px", height: "auto", margin: "0 auto" }} />
-            <p style={{ wordWrap: "break-word", whiteSpace: "normal", margin: "5px 0" }}>{img.name}</p>
+            {img && img.src ? (<img src={img.src} alt={`Profile ${index + 1}`} style={{ width: "100px", height: "auto", margin: "0 auto" }} />)
+                            : (<p style={{ paddingTop: '3rem', paddingBottom: '2.3rem' }}>No image available</p>)}
+            {img && img.name ? (<p style={{ wordWrap: "break-word", whiteSpace: "normal", margin: "5px 0" }}>{img.name}</p>)
+                             : (<p style={{ wordWrap: "break-word", whiteSpace: "normal", margin: "5px 0" }}>{user.bookMarkNames[index].name.primaryName}</p>)}
           </div>
         ))}
       </div>
