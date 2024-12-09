@@ -46,7 +46,7 @@ function TitleDetails() {
                <div id='date-rating' className='row2 row-cols-3 d-flex flex-wrap mb-3'>
                 <h5 className='col1'>Aired on: {t.startDate}</h5>
                 <h5 className='col2'></h5>
-                <h5 className=' col3'>Rating: stars</h5>
+                <h5 className=' col3'>Rating: {t.averageRating}</h5>
                </div>
                <div className='row3 bg-light p-4 rounded-1 shadow-lg mb-3'>
                  <p className='text-secondary fs-5 mb-0'>{t.plot}</p>

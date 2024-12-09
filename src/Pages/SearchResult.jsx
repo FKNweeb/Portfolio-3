@@ -5,6 +5,7 @@ import useNamesStore from "../Stores/NamesStore";
 import BestMatch from "../Components/BestMatch";
 import ExactMatch from "../Components/ExactMatch";
 import StructuredtMatch from "../Components/StructuredMatch";
+import StructuredNametMatch from "../Components/StructuredNameMatch";
 function SearchResult() {
     
     const {titles} = useTitlesStore();
@@ -130,9 +131,7 @@ function SearchResult() {
                     <BestMatch/>
                     <ExactMatch/>
                     <StructuredtMatch/>
-                    <input type="text" placeholder="Smth"></input>
-                    <h5 className="mb-3">Structured String Search</h5>
-                    <input type="text" placeholder="Smth"></input>
+                    <StructuredNametMatch/>
                 </div>
             </div>
         </div>
