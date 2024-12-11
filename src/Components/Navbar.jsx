@@ -8,7 +8,7 @@ import './Search.css';
 import Search from './Search';
 
 const Navbar = () => {
-  // const [searchText, setSearchText] = useState('');
+
   const { searchText, setSearchText } = useSearch();
   const { isLoggedIn, toggleIsLoggedIn } = useAuthStore();
 
@@ -22,7 +22,7 @@ const Navbar = () => {
     e.preventDefault();
     navigate("/SearchResult")
     setSearchText("");
-    // Implement search functionality here
+    
   };
 
   function logout() {

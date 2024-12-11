@@ -18,6 +18,7 @@ function KnownWorks({knownForTitles}) {
 
     const totalPages = Math.ceil(knownForTitles.length / itemsPerPage);
 
+    //Current Items should be used??
     return(
         <div className="row">
         <h5>Known works</h5>

@@ -21,8 +21,9 @@ function BestMatch(){
             .then( res => res.json())
             .then( data => setResults(data))
             .catch(err => console.log(err))
-        }catch{
-
+        }catch(err)
+        {
+            console.log(err);
         }
     } 
     
