@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from "react";
 import { ListGroup,ListGroupItem } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function ExactMatch(){
     const [searchTerm, setSearchTerm] = useState("");
@@ -41,7 +42,7 @@ function ExactMatch(){
             <ListGroup>
                 {show && results.slice(0, 5).map( t => (
                     <ListGroupItem key={t.tconst}>
-                        {t.primary_title}
+                        <Link to={`/Title/${t.tconst}`}>{t.primary_title}</Link>
                     </ListGroupItem>
                 ))}
             </ListGroup>

@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
+  /*Add photo for the background*/
+}
+
+.content {
+  flex: 1;
+}
+

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function BestMatch(){
 
@@ -43,7 +44,7 @@ function BestMatch(){
             <ListGroup>
                 {show && results.slice(0, 5).map( t => (
                     <ListGroupItem key={t.tconst}>
-                        {t.primary_title}
+                        <Link to={`/Title/${t.tconst}`}>{t.primary_title}</Link>
                     </ListGroupItem>
                 ))}
             </ListGroup>

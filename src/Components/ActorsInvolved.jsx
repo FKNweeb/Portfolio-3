@@ -1,23 +1,18 @@
 import React,{useState} from "react";
+import { paginate } from "../Helpers/Pagination";
+import { Link } from "react-router-dom";
 
 
 function ActorsInvolved({crew}){
+    
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 5;
+    const {currentItems: currentItems, totalPages:totalPages} = paginate(crew , currentPage, itemsPerPage);
     
-    const handleNext = () => {
-        setCurrentPage( prevPage => Math.min(prevPage + 1, totalPages));
-    } 
-    
-    const handlePrevious = () => {
-        setCurrentPage( prevPage => Math.max(prevPage - 1, 1));
-    } 
-
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = crew.slice(indexOfFirstItem, indexOfLastItem);
-
-    const totalPages = Math.ceil(crew.length / itemsPerPage);
+    const handlePageChange = (setter, direction, currentPage, totalPages) => {
+        if(direction === "next" && currentPage < totalPages) setter(currentPage + 1);
+        if(direction === "prev" && currentPage > 1) setter(currentPage -1);
+    }
     
     return (
         <div id="Actors" className='row'>
@@ -34,10 +29,10 @@ function ActorsInvolved({crew}){
                 ))}
             </div>
             {totalPages > 1 ? (<div className="pagination justify-content-center">
-               <button onClick={handlePrevious} className="btn btn-secondary me-2" disabled={currentPage === 1}>
+               <button onClick={()=>handlePageChange(setCurrentPage, "prev", currentPage, totalPages)} className="btn btn-secondary me-2" disabled={currentPage === 1}>
                 Previous
                </button>
-               <button onClick={handleNext} className="btn btn-secondary" disabled={currentPage === totalPages }>
+               <button onClick={()=>handlePageChange(setCurrentPage, "next", currentPage, totalPages)} className="btn btn-secondary" disabled={currentPage === totalPages }>
                 Next
                </button>
 

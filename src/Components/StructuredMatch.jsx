@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from "react";
 import { ListGroup,ListGroupItem } from "react-bootstrap";
 import './StructuredMatch.css'
+import { Link } from "react-router-dom";
 
 function StructuredtMatch(){
     const [searchTerm, setSearchTerm] = useState("");
@@ -72,7 +73,8 @@ function StructuredtMatch(){
                 {error && <ListGroupItem className="error">{error}</ListGroupItem>}
                 {show && results.length> 0 && results.map( t => (
                     <ListGroupItem key={t.tconst}>
-                        {t.primary_title}
+                        <Link to={`/Title/${t.tconst}`}>{t.primary_title}</Link>
+                        
                     </ListGroupItem>
                 ))}
                 {show && results.length===0 && !error && (

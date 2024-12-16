@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
+import { paginate } from "../Helpers/Pagination";
+import { Link } from "react-router-dom";
 
 function SimilarTitles({titleId}){
-    const url = `http://localhost:5001/api/titles/similartitles/${titleId}`
-
+    
     const [titles, setTitles] = useState([]);
-
+    
     useEffect(()=>{
+        setTitles([]);
+        setCurrentPage(1);
+        const url = `http://localhost:5001/api/titles/similartitles/${titleId}`
         fetch(url)
         .then(res => res.json())
         .then(data => setTitles(data))
@@ -18,21 +22,13 @@ function SimilarTitles({titleId}){
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 5;
     
-    const handleNext = () => {
-        setCurrentPage( prevPage => Math.min(prevPage + 1, totalPages));
-    } 
-    
-    const handlePrevious = () => {
-        setCurrentPage( prevPage => Math.max(prevPage - 1, 1));
-    } 
-
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    const currentItems = filterdTitles.slice(indexOfFirstItem, indexOfLastItem);
-
-    const totalPages = Math.ceil(titles.length / itemsPerPage);
-    
-    
+   
+    const {currentItems: currentItems, totalPages:totalPages} = paginate(filterdTitles, currentPage, itemsPerPage);
+        
+    const handlePageChange = (setter, direction, currentPage, totalPages) => {
+        if(direction === "next" && currentPage < totalPages) setter(currentPage + 1);
+        if(direction === "prev" && currentPage > 1) setter(currentPage -1);
+    }
     
     return(
         <div className="row">
@@ -43,17 +39,19 @@ function SimilarTitles({titleId}){
                 <div key={t.tconst} className="col-12 col-sm-6 col-md-4 col-lg-2 mb-1">
                     <div className="card h-100">
                         <div className="card-body ">
-                    <p>{t.primary_title}</p>
+                            <Link to={`/Title/${t.tconst}`}>
+                            <p>{t.primary_title}</p>
+                            </Link>
                         </div>
                     </div>
                 </div>
             )}
         </div>
         <div className="pagination justify-content-center">
-               <button onClick={handlePrevious} className="btn btn-secondary me-2" disabled={currentPage === 1}>
+               <button onClick={()=>handlePageChange(setCurrentPage, "prev", currentPage, totalPages)} className="btn btn-secondary me-2" disabled={currentPage === 1}>
                 Previous
                </button>
-               <button onClick={handleNext} className="btn btn-secondary" disabled={currentPage === totalPages }>
+               <button onClick={()=>handlePageChange(setCurrentPage, "next", currentPage, totalPages)} className="btn btn-secondary" disabled={currentPage === totalPages }>
                 Next
                </button>
 

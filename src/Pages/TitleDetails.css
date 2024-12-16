@@ -8,3 +8,16 @@
     align-items: center;
     
 }
+
+.text-long  {
+    overflow: hidden;
+    -webkit-line-clamp: 5;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    display: -webkit-box;
+}
+
+.text-long:hover {
+    cursor: context-menu;
+    -webkit-line-clamp: none;
+}

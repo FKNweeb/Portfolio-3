@@ -7,43 +7,23 @@ import ExactMatch from "../Components/ExactMatch";
 import StructuredtMatch from "../Components/StructuredMatch";
 import StructuredNametMatch from "../Components/StructuredNameMatch";
 import { Link } from "react-router-dom";
+import { paginate } from "../Helpers/Pagination";
 function SearchResult() {
     
     const {titles} = useTitlesStore();
     const {names} = useNamesStore();
 
-    console.log(titles);
-    console.log(names);
-
     const [currentPageName, setCurrentPageName] = useState(1);
     const [currentPageTitle, setCurrentPageTitle] = useState(1);
+    
+    const itemsPerPage = 3;
+    const {currentItems: currNames, totalPages: totalPagesName} = paginate(names, currentPageName, itemsPerPage);
+    const {currentItems: currTitles, totalPages: totalPagesTitle} = paginate(titles, currentPageTitle, itemsPerPage);
 
-    const handleNextName = () =>{
-        setCurrentPageName(currentPage => currentPage + 1)
+    const handlePageChange = (setter, direction, currentPage, totalPages) => {
+        if(direction === "next" && currentPage < totalPages) setter(currentPage + 1);
+        if(direction === "prev" && currentPage > 1) setter(currentPage -1);
     }
-
-    const handlePrevName = () => {
-        setCurrentPageName( currentPage => currentPage -1)
-    }
-
-    const handleNextTitle = () =>{
-        setCurrentPageTitle(currentPage => currentPage + 1)
-    }
-
-    const handlePrevTitle = () => {
-        setCurrentPageTitle( currentPage => currentPage -1)
-    }
-
-    const indexLastItem = currentPageName * 3;
-    const indexOfFirstItem = indexLastItem - 3;
-    const currNames = names.slice(indexOfFirstItem, indexLastItem);
-
-    const indexLastItemTitle = currentPageTitle * 3;
-    const indexOfFirstItemTitle = indexLastItemTitle - 3;
-    const currTitles = titles.slice(indexOfFirstItemTitle, indexLastItemTitle);
-
-    const totalPagesName = Math.ceil(names.length / 3);
-    const totalPagesTitle = Math.ceil(titles.length / 3);
     return (
         <div className="container">
             <div className="row row-cols-2 gx-5">
@@ -79,8 +59,8 @@ function SearchResult() {
                     </div>
                         <div id="buttons" className="row d-flex">
                             <div className="col-12 d-flex flex-column flex-md-row justify-content-center  mb-3 p-2">
-                                <button className="btn btn-outline-primary w-25 mx-2 w-md-25 text-truncate" onClick={handlePrevName} disabled={currentPageName === 1}>Previous{console.log(currentPageTitle)}</button>
-                                <button className="btn btn-outline-primary w-25 mx-2 w-md-25 text-truncate" onClick={handleNextName} disabled={currentPageName === totalPagesName}>Next</button>
+                                <button className="btn btn-outline-primary w-25 mx-2 w-md-25 text-truncate" onClick={()=>handlePageChange(setCurrentPageName, "prev", currentPageName, totalPagesName)} disabled={currentPageName === 1}>Previous</button>
+                                <button className="btn btn-outline-primary w-25 mx-2 w-md-25 text-truncate" onClick={()=>handlePageChange(setCurrentPageName, "next", currentPageName, totalPagesName)} disabled={currentPageName === totalPagesName}>Next</button>
                             </div>
                         </div>
 
@@ -91,7 +71,7 @@ function SearchResult() {
                             <div className="card w-100">
                                 <div className="card-body shadow-lg d-flex flex-column">
                                     <div className="d-flex flex-column flex-md-row justify-content-between">
-                                        <Link to={`/Title/${t.primaryTitle}`} className="card-title mb-0">{t.primaryTitle}</Link>
+                                        <Link to={`/Title/${t.tconst}`} className="card-title mb-0">{t.primaryTitle}</Link>
                                         {/* <h5 className="card-title mb-0">{t.primaryTitle}</h5> */}
                                         <p className="fst-italic">{t.startDate && <p>Aired: {t.startDate}</p>}</p>
                                     </div>
@@ -121,8 +101,8 @@ function SearchResult() {
                     </div>
                         <div id="buttons" className="row d-flex">
                             <div className="col-12 d-flex flex-column flex-md-row justify-content-center  mb-3 p-2">
-                                <button className="btn btn-outline-primary w-25 mx-2 w-md-25 text-truncate" onClick={handlePrevTitle} disabled={currentPageTitle === 1}>Previous</button>
-                                <button className="btn btn-outline-primary w-25 mx-2 w-md-25 text-truncate" onClick={handleNextTitle} disabled={currentPageTitle === totalPagesTitle}>Next</button> 
+                                <button className="btn btn-outline-primary w-25 mx-2 w-md-25 text-truncate" onClick={()=>handlePageChange(setCurrentPageTitle, "prev", currentPageTitle, totalPagesTitle)} disabled={currentPageTitle === 1}>Previous</button>
+                                <button className="btn btn-outline-primary w-25 mx-2 w-md-25 text-truncate" onClick={()=>handlePageChange(setCurrentPageTitle, "next", currentPageTitle, totalPagesTitle)} disabled={currentPageTitle === totalPagesTitle}>Next</button> 
                             </div>
 
                         </div>

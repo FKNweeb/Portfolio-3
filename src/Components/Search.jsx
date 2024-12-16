@@ -53,7 +53,7 @@ function Search() {
         <ListGroup className="text-center container-fluid p-0">
           {searchText &&
             titles.slice(0, 3).map((t) => (
-              <ListGroup.Item key={t.tconst} onClick={() => handleTitleClick(t.primaryTitle)}>
+              <ListGroup.Item key={t.tconst} onClick={() => handleTitleClick(t.tconst)}>
                 {t.primaryTitle}
               </ListGroup.Item>
             ))}

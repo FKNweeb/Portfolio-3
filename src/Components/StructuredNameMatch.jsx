@@ -1,6 +1,7 @@
 import React,{useState,useEffect} from "react";
 import { ListGroup,ListGroupItem } from "react-bootstrap";
 import './StructuredMatch.css'
+import { Link } from "react-router-dom";
 
 function StructuredNametMatch(){
     const [searchTerm, setSearchTerm] = useState("");
@@ -71,7 +72,8 @@ function StructuredNametMatch(){
                 {error && <ListGroupItem className="error">{error}</ListGroupItem>}
                 {show && results.length > 0 && results.map(n => (
                     <ListGroupItem key={n.ncosnt}>
-                        {n.person}
+                        <Link to={`/Name/${n.ncosnt}`}>{n.person}</Link>
+                        
                     </ListGroupItem>
                 ))}
                 {show && results.length === 0 && !error && (
