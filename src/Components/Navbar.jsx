@@ -62,9 +62,10 @@ const Navbar = () => {
           <Link to="/createuser" className="create-user">
             Create User
           </Link>
-          <Link to="/login" className="login">
+          {!isLoggedIn && <Link to="/login" className="login">
             Login
           </Link>
+          }
           {isLoggedIn && (
             <Link to="/profile" className="profile">
               Profile
